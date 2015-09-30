@@ -4,7 +4,8 @@ module.exports = function(root, data) {
   var CALL_ATTENTION_TO = "The World";
   var X_AXIS_LABEL = "Percent";
 
-  var element = root.getElementsByClassName('scatter')[0]
+  var element = root.getElementsByClassName('change-dot-plot')[0];
+
   var heightOverWidth = 0.5;
   var margin = {top: 20, right: 20, bottom: 30, left: 40},
       width = element.clientWidth - margin.left - margin.right,
@@ -38,8 +39,8 @@ module.exports = function(root, data) {
   // in this case, i know it's out of 100 because it's percents.
   widthScale.domain([0, 100]);
 
-  // js map: will make a new array out of all the d.name fields
-  heightScale.domain(data.map(function(d) { return d.name; } ));
+  // js map: will make a new array out of all the d.Name fields
+  heightScale.domain(data.map(function(d) { return d.Name; } ));
 
   // Make the faint lines from y labels to highest dot
   var linesGrid = svg.selectAll("lines.grid")
@@ -50,14 +51,14 @@ module.exports = function(root, data) {
   linesGrid.attr("class", "grid")
     .attr("x1", margin.left)
     .attr("y1", function(d) {
-      return heightScale(d.name) + heightScale.rangeBand()/2;
+      return heightScale(d.Name) + heightScale.rangeBand()/2;
     })
     .attr("x2", function(d) {
       return margin.left + widthScale(+d.Value2);
 
     })
     .attr("y2", function(d) {
-      return heightScale(d.name) + heightScale.rangeBand()/2;
+      return heightScale(d.Name) + heightScale.rangeBand()/2;
     });
 
   // Make the dotted lines between the dots
@@ -72,13 +73,13 @@ module.exports = function(root, data) {
       return margin.left + widthScale(+d.Value1);
     })
     .attr("y1", function(d) {
-      return heightScale(d.name) + heightScale.rangeBand()/2;
+      return heightScale(d.Name) + heightScale.rangeBand()/2;
     })
     .attr("x2", function(d) {
       return margin.left + widthScale(d.Value2);
     })
     .attr("y2", function(d) {
-      return heightScale(d.name) + heightScale.rangeBand()/2;
+      return heightScale(d.Name) + heightScale.rangeBand()/2;
     })
     .attr("stroke-dasharray", "5,5")
     .attr("stroke-width", function(d, i) {
@@ -91,64 +92,62 @@ module.exports = function(root, data) {
 
   // Make the dots for 1990
 
-  var dots1990 = svg.selectAll("circle.Value1")
+  var dots1 = svg.selectAll("circle.Value1")
       .data(data)
       .enter()
       .append("circle");
 
-  dots1990
+  dots1
     .attr("class", "Value1")
     .attr("cx", function(d) {
       return margin.left + widthScale(+d.Value1);
     })
     .attr("r", heightScale.rangeBand()/2)
     .attr("cy", function(d) {
-      return heightScale(d.name) + heightScale.rangeBand()/2;
+      return heightScale(d.Name) + heightScale.rangeBand()/2;
     })
     .style("stroke", function(d){
-      if (d.name === CALL_ATTENTION_TO) {
+      if (d.Name === CALL_ATTENTION_TO) {
         return "black";
       }
     })
     .style("fill", function(d){
-      if (d.name === CALL_ATTENTION_TO) {
+      if (d.Name === CALL_ATTENTION_TO) {
         return "darkorange";
       }
     })
     .append("title")
     .text(function(d) {
-      return d.name + VALUE1_LABEL_PREFIX + ": " + d.Value1;
+      return d.Name + VALUE1_LABEL_PREFIX + ": " + d.Value1;
     });
 
-  // Make the dots for 2015
+  var dots2 = svg.selectAll("circle.Value2")
+    .data(data)
+    .enter()
+    .append("circle");
 
-  var dots2015 = svg.selectAll("circle.Value2")
-      .data(data)
-      .enter()
-      .append("circle");
-
-  dots2015
+  dots2
     .attr("class", "Value2")
     .attr("cx", function(d) {
       return margin.left + widthScale(+d.Value2);
     })
     .attr("r", heightScale.rangeBand()/2)
     .attr("cy", function(d) {
-      return heightScale(d.name) + heightScale.rangeBand()/2;
+      return heightScale(d.Name) + heightScale.rangeBand()/2;
     })
     .style("stroke", function(d){
-      if (d.name === "The World") {
+      if (d.Name === "The World") {
         return "black";
       }
     })
     .style("fill", function(d){
-      if (d.name === "The World") {
+      if (d.Name === "The World") {
         return "#476BB2";
       }
     })
     .append("title")
     .text(function(d) {
-      return d.name + VALUE2_LABEL_PREFIX + ": " + d.Value2;
+      return d.Name + VALUE2_LABEL_PREFIX + ": " + d.Value2;
     });
 
   // add the axes
@@ -165,7 +164,7 @@ module.exports = function(root, data) {
   svg.append("text")
     .attr("class", "xlabel")
     .attr("transform", "translate(" + (margin.left + width / 2) + " ," +
-          (height + margin.bottom) + ")")
+      (height + margin.bottom) + ")")
     .style("text-anchor", "middle")
     .attr("dy", "12")
     .text(X_AXIS_LABEL);

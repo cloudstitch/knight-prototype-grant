@@ -1,54 +1,56 @@
-div.Value2 {
+.change-dot-plot .Value2 {
   color: #6699FF;
+  fill: #6699FF;
   display: inline;
 }
-div.Value1 {
+.change-dot-plot .Value1 {
   color: orange;
+  fill: orange;
   display: inline;
 }
 
-svg {
+.change-dot-plot svg {
   background-color: white;
 }
 
-circle {
+.change-dot-plot circle {
   stroke-width: 1;
 }
 
-circle.y2015 {
+.change-dot-plot circle.y2015 {
   fill: #6699FF;
 }
 
-circle.y1990 {
+.change-dot-plot circle.y1990 {
   fill: orange;
 }
 
-circle:hover {
+.change-dot-plot circle:hover {
   stroke-width: 3;
   stroke: white;
 }
 
-line.grid {
+.change-dot-plot line.grid {
   stroke: #eee;
 }
 
-line.between {
+.change-dot-plot line.between {
   stroke: black;
 }
 
-.axis path,
-.axis line {
+.change-dot-plot .axis path,
+.change-dot-plot .axis line {
   fill: none;
   stroke: black;
   shape-rendering: crispEdges;
 }
 
-.axis text {
+.change-dot-plot .axis text {
   font-family: sans-serif;
   font-size: 11px;
 }
 
-.xlabel {
+.change-dot-plot .xlabel {
   font-famile: sans-serif;
   font-size: 11px;
   color: gray;
