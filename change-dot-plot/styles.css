@@ -1,0 +1,55 @@
+div.Value2 {
+  color: #6699FF;
+  display: inline;
+}
+div.Value1 {
+  color: orange;
+  display: inline;
+}
+
+svg {
+  background-color: white;
+}
+
+circle {
+  stroke-width: 1;
+}
+
+circle.y2015 {
+  fill: #6699FF;
+}
+
+circle.y1990 {
+  fill: orange;
+}
+
+circle:hover {
+  stroke-width: 3;
+  stroke: white;
+}
+
+line.grid {
+  stroke: #eee;
+}
+
+line.between {
+  stroke: black;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: black;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  font-family: sans-serif;
+  font-size: 11px;
+}
+
+.xlabel {
+  font-famile: sans-serif;
+  font-size: 11px;
+  color: gray;
+}
